@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+
+:root {
+  color-scheme: dark;
+  --bg: #080d19;
+  --panel: rgba(18, 25, 40, 0.72);
+  --panel-strong: rgba(18, 25, 40, 0.9);
+  --border: rgba(212, 175, 55, 0.2);
+  --text: #f3f0e8;
+  --muted: #b5b1a6;
+  --gold: #e4bd55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.11), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(180, 139, 38, 0.12), transparent 25%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f3d77a, #bc8d27);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #f8fafc;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.section-panel {
+  background: linear-gradient(180deg, rgba(20, 28, 44, 0.86), rgba(13, 20, 34, 0.82));
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
+}
+
+.section-panel {
+  border-radius: 1.75rem;
+}
+
+.project-card {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(228, 189, 85, 0.48);
+  box-shadow: 0 20px 48px rgba(212, 175, 55, 0.1);
+}
+
+.portrait-frame {
+  isolation: isolate;
+  animation: portrait-frame-glow 4s ease-in-out infinite;
+}
+
+.portrait-frame::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.16) 48%,
+    transparent 66%
+  );
+  transform: translateX(-110%);
+  animation: portrait-sheen 7s ease-in-out infinite;
+}
+
+.portrait-slide {
+  z-index: 0;
+  opacity: 0;
+  filter: saturate(0.82);
+  transition:
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.9s ease,
+    filter 1s ease;
+}
+
+.portrait-slide-active {
+  z-index: 0;
+  opacity: 1;
+  filter: saturate(1.08);
+  animation: portrait-arrive 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portrait-glow {
+  animation: portrait-glow-drift 6s ease-in-out infinite alternate;
+}
+
+.portrait-focus-badge {
+  animation: portrait-badge-float 4s ease-in-out infinite;
+}
+
+.portrait-focus-icon {
+  animation: portrait-icon-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes portrait-arrive {
+  from {
+    scale: 1.06;
+    filter: blur(3px) saturate(0.8);
+  }
+  to {
+    scale: 1;
+    filter: blur(0) saturate(1.08);
+  }
+}
+
+@keyframes portrait-frame-glow {
+  0%,
+  100% {
+    box-shadow: 0 18px 48px rgba(212, 175, 55, 0.12);
+  }
+  50% {
+    box-shadow: 0 22px 60px rgba(212, 175, 55, 0.3);
+  }
+}
+
+@keyframes portrait-sheen {
+  0%,
+  65%,
+  100% {
+    transform: translateX(-110%);
+  }
+  84% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes portrait-glow-drift {
+  from {
+    opacity: 0.55;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1.08;
+  }
+}
+
+@keyframes portrait-badge-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes portrait-icon-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(228, 189, 85, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px 2px rgba(228, 189, 85, 0.24);
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(18, 25, 40, 0.76);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgb(243 240 232);
+}
+
+::selection {
+  color: #111827;
+  background: #e4bd55;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+@media (max-width: 768px) {
+  .project-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-frame,
+  .portrait-frame::after,
+  .portrait-slide-active,
+  .portrait-glow,
+  .portrait-focus-badge,
+  .portrait-focus-icon {
+    animation: none;
+  }
+
+  .portrait-slide {
+    transition: none;
+  }
+}
